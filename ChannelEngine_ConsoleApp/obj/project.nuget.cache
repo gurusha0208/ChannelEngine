@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "+boL5mYF0qN5RN1vN9y+/B2c1jBKqHTP4rK2AHDgulyuJZY07p1v6ZeMr/ynadC9crX9lwIcicdDLWTEafOqKw==",
+  "success": false,
+  "projectFilePath": "C:\\ChannelEngine_Project\\ChannelEngine_ConsoleApp\\ChannelEngine_ConsoleApp.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\ChannelEngine_Project\\ChannelEngine_Service\\ChannelEngine_Service.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\ChannelEngine_Project\\ChannelEngine_Service\\ChannelEngine_Service.csproj",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ChannelEngine_Domain.Model.Line>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+<form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MerchantProductNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gtin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null && Model.Count() > 0)
+        {
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MerchantProductNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gtin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.StockLocation.Id)
+                    <button class="btn-outline-success" asp-action="UpdateStock" asp-route-no="@item.MerchantProductNo" asp-route-id="@item.StockLocation.Id">Update Stock</button>
+                </td>
+            </tr>
+        }
+        }
+        </tbody>
+    </table>
+</form>
