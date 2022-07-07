@@ -8,6 +8,6 @@ namespace ChannelEngine_Repository.Interface
     public interface IProductRepository
     {
         List<Line> GetTopProducts(string status);
-        bool UpdateStock(Product product);
+        bool UpdateStock(List<Product> product);
     }
 }

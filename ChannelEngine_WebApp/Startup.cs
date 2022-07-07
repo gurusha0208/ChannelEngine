@@ -33,7 +33,7 @@ namespace ChannelEngine_WebApp
             services.AddControllersWithViews();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<Repository, Repository>();
+            services.AddTransient<IRepository, Repository>();
             
         }
 

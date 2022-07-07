@@ -7,7 +7,7 @@ namespace ChannelEngine_Domain.Model
     public class Product
     {
         public string MerchantProductNo { get; set; }
-        public StockLocation StockLocations { get; set; }
+        public List<StockLocation> StockLocations { get; set; }
     }
 
     public class StockLocation
