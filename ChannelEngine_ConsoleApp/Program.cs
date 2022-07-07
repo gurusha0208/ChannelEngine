@@ -20,7 +20,7 @@ namespace ChannelEngine_ConsoleApp
             var serviceProvider = new ServiceCollection()
                 .AddSingleton<IProductService, ProductService>()
                 .AddSingleton<IProductRepository, ProductRepository>()
-                .AddSingleton<Repository, Repository>()
+                .AddSingleton<IRepository, Repository>()
                 .BuildServiceProvider();
 
             // Get list of Top 5 products
