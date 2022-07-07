@@ -49,7 +49,7 @@ namespace ChannelEngine_Repository
         }
 
         [HttpPut]
-        public async Task<bool> UpdateStock(Product product) 
+        public async Task<bool> UpdateStock(List<Product> product) 
         { 
             bool result = false;
             try
@@ -57,25 +57,23 @@ namespace ChannelEngine_Repository
                 using (HttpClient client = new HttpClient())
                 {
 
-                    client.DefaultRequestHeaders.Add("apikey", Config.ApiKey); 
+                    client.DefaultRequestHeaders.Add("X-CE-KEY", Config.ApiKey);
 
                     var myContent = JsonConvert.SerializeObject(product);
                     var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                    HttpResponseMessage response = await client.PostAsync(Config.ApiUrl + "v2/offer/stock",byteContent);
+                    HttpResponseMessage response = await client.PutAsync(Config.ApiUrl + "v2/offer/stock", byteContent);
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var objResponse = response.Content.ReadAsStringAsync().Result;
-                        var res = JsonConvert.DeserializeObject<OrderResponse>(objResponse);
-                        if (res != null)
-                            result = res.Success;
+                        result = true;
                     }
-
+                                        
                     return result;
                 }
+                
             }
             catch (Exception e)
             {

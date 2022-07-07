@@ -22,36 +22,41 @@ namespace ChannelEngine_ConsoleApp
                 .AddSingleton<IProductRepository, ProductRepository>()
                 .AddSingleton<Repository, Repository>()
                 .BuildServiceProvider();
-                    
+
 
             var product = serviceProvider.GetService<IProductService>();
             var orders = product.GetTopProducts(Config.Status);
             DisplayOfTopFive(orders);
-            
+
             Console.WriteLine("Please type the product number to Update Stock");
 
-            var line = Console.ReadLine().Replace(" ","").Replace("-","").ToLower();
+            var line = Console.ReadLine().Replace(" ", "").Replace("-", "").ToLower();
 
-            while(!orders.Select(x => x.MerchantProductNo.ToLower().Replace("-","")).ToList().Contains(line))
+            while (!orders.Select(x => x.MerchantProductNo.ToLower().Replace("-", "")).ToList().Contains(line))
             {
                 Console.WriteLine("Please type a valid stock number");
                 line = Console.ReadLine().Replace(" ", "").Replace("-", "").ToLower();
             }
 
-            var item = orders.Where(x => x.MerchantProductNo.ToLower().Replace("-","") == line).FirstOrDefault();
-            
-            var model = new Product()
+            var item = orders.Where(x => x.MerchantProductNo.ToLower().Replace("-", "") == line).FirstOrDefault();
+
+            var model = new List<Product>()
             {
-                MerchantProductNo = item.MerchantProductNo,
-                StockLocations = new StockLocation()
-                {
-                    StockLocationId = item.StockLocation.Id,
-                    Stock = Config.StockValue
+                new Product(){
+                    MerchantProductNo = item.MerchantProductNo,
+                    StockLocations = new List<StockLocation>()
+                    {
+                        new StockLocation()
+                        {
+                        StockLocationId = item.StockLocation.Id,
+                        Stock = Config.StockValue
+                        }
+                    }
                 }
             };
 
             var result = product.UpdateStock(model);
-            
+
             if (result)
             {
                 Console.WriteLine("Updated successfully");
@@ -61,8 +66,7 @@ namespace ChannelEngine_ConsoleApp
                 Console.WriteLine("Error while Updating");
             }
 
-            orders = product.GetTopProducts(Config.Status);
-            DisplayOfTopFive(orders);
+            Console.ReadLine();
         }
 
         public static void DisplayOfTopFive(List<Line> orders)
@@ -72,7 +76,7 @@ namespace ChannelEngine_ConsoleApp
             {
                 Console.WriteLine(String.Format("|{0,15}|{1,20}|{2,5}|", itemLine.MerchantProductNo, itemLine.Gtin, itemLine.Quantity));
             }
-           
+
         }
     }
 }

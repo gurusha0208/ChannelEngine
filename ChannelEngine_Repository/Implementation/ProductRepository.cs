@@ -40,7 +40,7 @@ namespace ChannelEngine_Repository.Implementation
             }
         }
 
-        public bool UpdateStock(Product product)
+        public bool UpdateStock(List<Product> product)
         {
             bool result = false;
             try

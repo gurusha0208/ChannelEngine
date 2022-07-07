@@ -41,24 +41,26 @@ namespace ChannelEngine_WebApp.Controllers
 
             try
             {
-                var product = new Product()
+                var product = new List<Product>()
                 {
-                    MerchantProductNo = no,
-                    StockLocations = new StockLocation()
-                    {
-                        Stock = Convert.ToInt32(_config["AppSettings:StockValue"]),
-                        StockLocationId = id
+                    new Product{
+                        MerchantProductNo = no,
+                        StockLocations = new List<StockLocation>()
+                        {
+                          new StockLocation(){  Stock = Convert.ToInt32(_config["AppSettings:StockValue"]),
+                            StockLocationId = id }
+                        }
                     }
                 };
                 bool result = _service.UpdateStock(product);
-
+                TempData["Message"] = "Successfully updated ";
             }
             catch (Exception ex)
             {
                 TempData["Message"] = "Error :" + ex.Message;
             }
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
