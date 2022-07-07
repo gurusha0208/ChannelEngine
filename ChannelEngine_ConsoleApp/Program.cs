@@ -23,7 +23,7 @@ namespace ChannelEngine_ConsoleApp
                 .AddSingleton<Repository, Repository>()
                 .BuildServiceProvider();
 
-
+            // Get list of Top 5 products
             var product = serviceProvider.GetService<IProductService>();
             var orders = product.GetTopProducts(Config.Status);
             DisplayOfTopFive(orders);
@@ -55,6 +55,7 @@ namespace ChannelEngine_ConsoleApp
                 }
             };
 
+            //update stock
             var result = product.UpdateStock(model);
 
             if (result)

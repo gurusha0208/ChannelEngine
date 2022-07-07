@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ChannelEngine_Repository
 {
-    public class Repository
+    public class Repository : IRepository
     {       
         public Repository()
         {

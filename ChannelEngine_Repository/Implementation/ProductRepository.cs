@@ -10,9 +10,9 @@ namespace ChannelEngine_Repository.Implementation
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly Repository _repository;
+        private readonly IRepository _repository;
 
-        public ProductRepository(Repository repository)
+        public ProductRepository(IRepository repository)
         {
             _repository = repository;
         }

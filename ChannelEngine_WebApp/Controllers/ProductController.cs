@@ -53,7 +53,7 @@ namespace ChannelEngine_WebApp.Controllers
                     }
                 };
                 bool result = _service.UpdateStock(product);
-                TempData["Message"] = "Successfully updated ";
+                TempData["Message"] = "Successfully updated for " + string.Join(",", product.Select(x => x.MerchantProductNo));
             }
             catch (Exception ex)
             {
